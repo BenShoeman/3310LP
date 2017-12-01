@@ -58,6 +58,35 @@ class Tableau:
         self.a = ahat
         self.b = bhat
         self.c = chat
+    
+    def simplex(self):
+      # Use simplex pivot rules until we either find the solution (-c_j >= 0)
+    # or we find the problem is unbounded feasible (all a_ij<=0 for -c_j<0)
+        while np.any(self.c < 0):
+            # Case I: b >= 0
+            if np.all(self.b >= 0):
+                pivot_cols = np.where(self.c < 0)[0]
+                
+                # Create list of possible pivots and ratios b_i/a_ij
+                poss_pivots = []
+                poss_pivot_ratios = []
+                for col in pivot_cols:
+                    rows = np.where(self.a[:,col] > 0)[0]
+                    for row in rows:
+                        # Push tuple of row,col to pivots list
+                        poss_pivots.append((row, col))
+                        poss_pivot_ratios.append(b[row]/a[row,col])
+                
+                if len(poss_pivots) == 0:
+                    raise Exception("Problem is unbounded feasible")
+                min_ratio_index = np.argmin(poss_pivot_ratios)
+                curr_pivot = poss_pivots[min_ratio_index]
+
+                # Now pivot at the pivot we've chosen
+                self.pivot(curr_pivot[0], curr_pivot[1])
+            # Case II: some b_i < 0
+            else:
+                pass
         
     # solution to maximum problem
     def getX(self):
@@ -91,8 +120,9 @@ t = Tableau(3,3)
 t.b = b
 t.a = a
 t.c = c
-t.pivot(2,0)
-t.pivot(1,2)
+t.simplex()
+# t.pivot(2,0)
+# t.pivot(1,2)
 print("b", t.b)
 print("c", t.c)
 print(t.getX())
