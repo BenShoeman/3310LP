@@ -60,7 +60,7 @@ class Tableau:
         self.c = chat
     
     def simplex(self):
-      # Use simplex pivot rules until we either find the solution (-c_j >= 0)
+    # Use simplex pivot rules until we either find the solution (-c_j >= 0)
     # or we find the problem is unbounded feasible (all a_ij<=0 for -c_j<0)
         while np.any(self.c < 0):
             # Case I: b >= 0
@@ -75,7 +75,7 @@ class Tableau:
                     for row in rows:
                         # Push tuple of row,col to pivots list
                         poss_pivots.append((row, col))
-                        poss_pivot_ratios.append(b[row]/a[row,col])
+                        poss_pivot_ratios.append(self.b[row]/self.a[row,col])
                 
                 if len(poss_pivots) == 0:
                     raise Exception("Problem is unbounded feasible")
@@ -86,7 +86,24 @@ class Tableau:
                 self.pivot(curr_pivot[0], curr_pivot[1])
             # Case II: some b_i < 0
             else:
-                pass
+                k = np.where(self.b < 0)[0][0] # b_k is first b_i<0
+                neg_a_kj0 = np.where(self.a[k,:] < 0)[0]
+                if len(neg_a_kj0) == 0:
+                    raise Exception("Problem is infeasible")
+                pivot_col = neg_a_kj0[0] # j_0 is the pivot column
+                
+                pivot_rows_1 = np.where(self.b >= 0)[0]
+                pivot_rows_2 = np.where(self.a[:,pivot_col] > 0)[0]
+                # We want rows where both conditions are true, so get their intersection
+                pivot_rows = np.append(np.intersect1d(pivot_rows_1, pivot_rows_2), [k])
+
+                pivot_row_ratios = np.divide(self.b[pivot_rows], self.a[pivot_rows,pivot_col].T)
+                
+                min_ratio_index = np.argmin(pivot_row_ratios)
+                pivot_row = pivot_rows[min_ratio_index]
+
+                # Now pivot at the pivot we've chosen
+                self.pivot(pivot_row, pivot_col)
         
     # solution to maximum problem
     def getX(self):
@@ -111,19 +128,45 @@ class Tableau:
                     if self.r[k] == 10+n:
                        y[0][n] = self.c[k]
         return(y)
+    
+    def print_results(self):
+        print("b", self.b)
+        print("c", self.c)
+        print(self.getX())
+        print(self.getY())
 
-# problem from bottom of pg.22, Ferguson
-b = np.array([6., 4., 7.])
-a = np.array([1., 3., -1., 0., 1., 1., 3., 1., 0.]).reshape(3,3)
-c = np.array([-5., -2., -1.])
-t = Tableau(3,3)
-t.b = b
-t.a = a
-t.c = c
-t.simplex()
-# t.pivot(2,0)
-# t.pivot(1,2)
-print("b", t.b)
-print("c", t.c)
-print(t.getX())
-print(t.getY())
+def p22_ferguson_example():
+    # problem from bottom of pg.22, Ferguson
+    # Good example of pivoting in Case I
+    b = np.array([6., 4., 7.])
+    a = np.array([1., 3., -1., 0., 1., 1., 3., 1., 0.]).reshape(3,3)
+    c = np.array([-5., -2., -1.])
+    t = Tableau(3,3)
+    t.b = b
+    t.a = a
+    t.c = c
+    t.simplex()
+    # t.pivot(2,0)
+    # t.pivot(1,2)
+    t.print_results()
+
+def p26_ferguson_example():
+    # problem from top of pg.26 Ferguson
+    # Good example of pivoting in Case II
+    b = np.array([3.,-2.,5.])
+    a = np.matrix([[0.,1.,2.],[-1.,0.,-3.],[2.,1.,7.]])
+    c = np.array([-1.,-1.,-5.])
+    t = Tableau(3,3)
+    t.b = b
+    t.a = a
+    t.c = c
+    t.simplex()
+    t.print_results()
+
+def main():
+    p22_ferguson_example()
+    print()
+    p26_ferguson_example()
+
+if __name__ == '__main__':
+    main() 
