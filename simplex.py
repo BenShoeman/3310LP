@@ -21,8 +21,7 @@ class Tableau:
     
     def pivot(self, i, j):
         if self.a[i,j] == 0:
-            print("Pivot error: a[i,j] must not be 0")
-            return
+            raise Exception("Pivot error: a[i,j] must not be 0")
         tmp = self.r[j]
         self.r[j] = self.t[i]
         self.t[i] = tmp
@@ -87,13 +86,13 @@ class Tableau:
             # Case II: some b_i < 0
             else:
                 k = np.where(self.b < 0)[0][0] # b_k is first b_i<0
-                neg_a_kj0 = np.where(self.a[k,:] < 0)[0]
+                neg_a_kj0 = np.where(np.array(self.a[k,:])[0] < 0)[0]
                 if len(neg_a_kj0) == 0:
                     raise Exception("Problem is infeasible")
                 pivot_col = neg_a_kj0[0] # j_0 is the pivot column
                 
                 pivot_rows_1 = np.where(self.b >= 0)[0]
-                pivot_rows_2 = np.where(self.a[:,pivot_col] > 0)[0]
+                pivot_rows_2 = np.where(np.array(self.a[:,pivot_col])[0] > 0)[0]
                 # We want rows where both conditions are true, so get their intersection
                 pivot_rows = np.append(np.intersect1d(pivot_rows_1, pivot_rows_2), [k])
 
@@ -115,7 +114,7 @@ class Tableau:
                 for n in range(0, self.m):
                     if self.t[n] == 20+k:
                         x[0][k] = self.b[n]
-        return(x)
+        return(x[0])
     
     # solution to minimum problem
     def getY(self):
@@ -127,7 +126,7 @@ class Tableau:
                 for k in range(0, self.n):
                     if self.r[k] == 10+n:
                        y[0][n] = self.c[k]
-        return(y)
+        return(y[0])
     
     def print_results(self):
         print("b", self.b)
