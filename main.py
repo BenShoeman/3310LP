@@ -1,3 +1,4 @@
+import campusgraph
 import networkx as nx
 from shortestpath import *
 
@@ -11,8 +12,15 @@ def simple_example():
     p = shortest_path(G, 0, 3)
     print(p)
 
+def campus_problem():
+    G = campusgraph.create_graph()
+    p = shortest_path(G, 0, 49)
+    print(p)
+
 def main():
     simple_example()
+    print()
+    campus_problem()
 
 if __name__ == '__main__':
     main()
