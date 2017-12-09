@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.5 \baselineskip}
+\usepackage[top = 1in, bottom = 1in]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb,mathtools,hyperref,graphicx}
+\setcounter{MaxMatrixCols}{20}
+
+%\usepackage{titling}
+%\setlength{\droptitle}{-1in}
+\title{Using Linear Programming to Find Shortest Path}
+\author{Darice Guittet and Benjamin Shoeman}
+\date{8 November 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+
+
+
+\section{Introduction}
+The problem of optimization arises in many contexts, from logistical considerations such as scheduling appointments, to financial concerns such as maximizing return from investments, to technical questions regarding control of interconnected systems, such as a power grid network. Linear programming is a group of techniques for tackling such problems when the system and its constraints can be represented linearly. Specifically, we investigate the Simplex Algorithm, which is a simple approach which can be proven via the Duality Theorem to return the optimal value, provided such a solution exists. We apply our Simplex solver on the shortest-path problem on a graph by formulating it as a minimum flow problem. While the formulation can be generalized to more complex flow problems, we turn to the problem of finding the shortest path to reach one location on campus from another. When a student has only ten minutes between classes to get to another, an optimal path is desirable. 
+
+\subsection{Is there an Optimal Solution?}
+Linear programming is the process of optimizing a system by maximizing or minimizing an objective function given inequalities as constraints. Suppose we want to find the values of $x_1, x_2, \ldots, x_n \geq 0$ that maximize the objective function:
+
+\begin{center}
+     $c_1x_1 + \cdots + c_nx_n = \mathbf{c}^\text{T}\mathbf{x} = z(\mathbf{x})$\\
+\end{center}
+
+subject to the constraints:
+\begin{center}
+    $x_1a_{1,1} +  \cdots + x_ia_{1,i} + \cdots +  x_na_{1,n} \leq b_1$ \\
+\hspace{0cm} \vdots \\
+    $x_1a_{m,1} + \cdots + x_ia_{m,i} + \cdots +  x_ma_{m,n} \leq b_m$ \\
+    $x_1, x_2, \cdots, x_n \geq 0$
+\end{center} 
+
+In the maximum problem, the coefficients of the objective function, $c_i$, represent the cost or value of each element $x_i$, and the vector $\mathbf{b}$ represents requirements on properties of $x$, tabulated by the matrix $A$. By requiring nonnegativity of $x_i$ in the last constraint, we put the problem into standard form. All problems can be put into standard form \cite{ferguson}, in which all constraints are inequalities and $\mathbf{x}\geq0$, so the following theory regarding standard problems apply to general problems. The standard maximum problem can be written as:
+\begin{equation} \label{eq:maxprob}
+    \begin{array}{rrcl}
+        \text{maximize} & z(\mathbf{x}) & = & \mathbf{c}^\text{T} \mathbf{x} \\
+        \text{subject\ to} & A \mathbf{x} & \leq & \mathbf{b} \\
+        \text{where} & \mathbf{x} & \geq & \mathbf{0}
+    \end{array}
+\end{equation}
+
+The dual of this problem is the minimum problem. The maximum problem can be converted into its dual using the fact that $(a \leq b \land c \leq d) \implies y_1a+y_2c \leq y_1b+y_2d$, for some scaling factors $y_1, y_2 \in \mathbb{R}$. 
+
+For each constraint in the maximum problem, we can derive a new inequality by scaling each and looking at the sum:
+
+\begin{center}
+    $y_1\big(x_1a_{1,1} +  \cdots + x_ia_{1,i} + \cdots +  x_na_{1,n}\big)$ + \\
+    $\cdots$ \\
+    $+ \ y_m\big( x_1a_{m,1} + \cdots + x_ia_{m,i} + \cdots +  x_ma_{m,n} \big) $\\
+    $ \leq$ \\
+    $ y_1b_1  + \cdots +  y_mb_m$ 
+\end{center} 
+
+We rewrite the inequality by gathering $x_i$ terms:
+
+\begin{center}
+    $x_1 \big(y_1a_{1,1} +  \cdots + y_ia_{i,1} + \cdots +  y_ma_{m,1}\big)$ + \\
+    $\cdots$ \\
+    $+ \ x_n\big(y_1a_{1,n} + \cdots + y_ia_{i,n} + \cdots +  y_ma_{m,n} \big) $\\
+    $ \leq$ \\
+    $ y_1b_1  + \cdots +  y_mb_m$ 
+\end{center} 
+
+\section{Mathematical Formulation}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{chandrasekaran}
+Chandrasekaran, R. 
+\textit{Shortest Path.} 
+\url{https://www.utdallas.edu/~chandra/documents/networks/net3.pdf}
+
+\bibitem{ferguson}
+Ferguson, T. S.
+\textit{Linear Programming.}
+\url{https://www.math.ucla.edu/~tom/LP.pdf}
+
+\bibitem{gale}
+Gale, D.
+\textit{Linear Programming and the Simplex Method.}
+Notices of the AMS. 
+Volume 54, Number 3.
+\url{https://www.ams.org/notices/200703/fea-gale.pdf}
+
+\bibitem{trevisan}
+Trevisan, L.
+\textit{Lecture 6 Notes.}
+\url{https://people.eecs.berkeley.edu/~luca/cs261/lecture06.pdf}
+
+\end{thebibliography}
+
+\end{document}
