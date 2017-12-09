@@ -8,6 +8,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb,mathtools,hyperref,graphicx}
+\mathtoolsset{showonlyrefs}
 \setcounter{MaxMatrixCols}{20}
 
 %\usepackage{titling}
@@ -25,10 +26,12 @@
 
 
 \section{Introduction}
-The problem of optimization arises in many contexts, from logistical considerations such as scheduling appointments, to financial concerns such as maximizing return from investments, to technical questions regarding control of interconnected systems, such as a power grid network. Linear programming is a group of techniques for tackling such problems when the system and its constraints can be represented linearly. Specifically, we investigate the Simplex Algorithm, which is a simple approach which can be proven via the Duality Theorem to return the optimal value, provided such a solution exists. We apply our Simplex solver on the shortest-path problem on a graph by formulating it as a minimum flow problem. While the formulation can be generalized to more complex flow problems, we turn to the problem of finding the shortest path to reach one location on campus from another. When a student has only ten minutes between classes to get to another, an optimal path is desirable. 
+The problem of optimization arises in many contexts, from logistical considerations such as scheduling appointments, to financial concerns such as maximizing return from investments, to technical questions regarding control of interconnected systems, such as a power grid network. Linear programming is a group of techniques for tackling such problems when the system and its constraints can be represented linearly. Specifically, we investigate the Simplex Algorithm, which is a simple approach which can be proven via the Duality Theorem to return the optimal value, provided such a feasible solution exists. We apply our Simplex solver on the shortest-path problem on a graph by formulating it as a minimum flow problem. While the formulation can be generalized to more complex flow problems, we turn to the problem of finding the shortest path to reach one location on campus from another. When a student has only ten minutes between classes to get to another, an optimal path is desirable. 
 
 \subsection{Is there an Optimal Solution?}
-Linear programming is the process of optimizing a system by maximizing or minimizing an objective function given inequalities as constraints. Suppose we want to find the values of $x_1, x_2, \ldots, x_n \geq 0$ that maximize the objective function:
+Linear programming is the process of optimizing a system by maximizing or minimizing an objective function given inequalities as constraints. Given a linear program, it can be: feasible bounded, if a solution exists and the objective function is bounded; feasible unbounded, if a solution exists but the objective function can assume arbitrarily large values; or infeasible. In this section, we are interested in determining whether a linear program has an optimal, a feasible vector which gives the objective function its highest value. 
+
+Suppose we want to find the values of $x_1, x_2, \ldots, x_n \geq 0$ that maximize the objective function:
 
 \begin{center}
      $c_1x_1 + \cdots + c_nx_n = \mathbf{c}^\text{T}\mathbf{x} = z(\mathbf{x})$\\
@@ -63,7 +66,7 @@ For each constraint in the maximum problem, we can derive a new inequality by sc
     $ y_1b_1  + \cdots +  y_mb_m$ 
 \end{center} 
 
-We rewrite the inequality by gathering $x_i$ terms:
+We rewrite the inequality by gathering $x_i$ terms and find that for every feasible $\mathbf{x}$, a linear combination of the $x_i$ must be less than an upper bound $\mathbf{y}^\text{T}\mathbf{b}$.
 
 \begin{center}
     $x_1 \big(y_1a_{1,1} +  \cdots + y_ia_{i,1} + \cdots +  y_ma_{m,1}\big)$ + \\
@@ -73,7 +76,62 @@ We rewrite the inequality by gathering $x_i$ terms:
     $ y_1b_1  + \cdots +  y_mb_m$ 
 \end{center} 
 
-\section{Mathematical Formulation}
+If we choose $y_i$ such that they satisfy the following constraints, where $c_i$ are the coefficients of the objective function,
+
+\begin{center}
+	$c_1 \leq y_1a_{1,1} +  \cdots + y_ia_{i,1} + \cdots +  y_ma_{m,1}$ \\
+\hspace{0cm} \vdots \\
+	$c_n \leq y_1a_{1,n} +  \cdots + y_ia_{i,n} + \cdots +  y_ma_{m,n}$ \\
+\end{center}
+
+and multiply the $i$ inequality by $x_i$ while summing each inequality as we did before, we arrive at a lower bound for the same linear combination of the $x_i$ for which we found an upper bound.
+
+\begin{center}
+	$ c_1x_1 + \cdots + c_nx_n  $ \\
+	$ \leq $\\
+    $x_1 \big(y_1a_{1,1} +  \cdots + y_ia_{i,1} + \cdots +  y_ma_{m,1}\big)$ + \\
+    $\cdots$ \\
+    $+ \ x_n\big(y_1a_{1,n} + \cdots + y_ia_{i,n} + \cdots +  y_ma_{m,n} \big) $\\
+    $ \leq$ \\
+    $ y_1b_1  + \cdots +  y_mb_m$ 
+\end{center} 
+
+The dual of the standard maximum problem \eqref{eq:maxprob}, the standard minimum problem, comes from solving for the scaling factors $y_i$ for which we get as tight of an upper bound as possible.
+
+\begin{equation} \label{eq:minprob}
+    \begin{array}{rrcl}
+        \text{minimize} & z'(\mathbf{y}) & = & \mathbf{y}^\text{T} \mathbf{b} \\
+        \text{subject\ to} & A^\text{T} \mathbf{y} & \geq & \mathbf{c} \\
+        \text{where} & \mathbf{y} & \geq & \mathbf{0}
+    \end{array}
+\end{equation}
+
+In fact, the dual of the dual of the linear program is the linear program itself, called the \textit{primal} \cite{trevisan}, which can be formed by taking the negative of \eqref{eq:minprob} to make it a maximum problem and applying the above process to find the dual.
+\begin{equation} 
+    \begin{array}{rrrrrrrcl}
+        \text{maximize} & -z'(\mathbf{y}) & = & -\mathbf{y}^\text{T} \mathbf{b} & &  \text{minimize} & -z(\mathbf{y}) & = & -\mathbf{c}^\text{T} \mathbf{x}  \\
+        \text{subject\ to} & -A^\text{T} \mathbf{y} & \leq & -\mathbf{c} & \implies &  \text{subject\ to} & -A \mathbf{x} & \geq & -\mathbf{b} \\
+        \text{where} & \mathbf{y} & \geq & \mathbf{0} & & \text{where} & \mathbf{x} & \geq & \mathbf{0}
+    \end{array}
+\end{equation}
+
+Then retaking the negative to find the maximum, we get the primal problem \eqref{eq:maxprob} back. We see from the inequality above that:
+
+\begin{equation}\label{eq:bounds}
+\mathbf{c}^\text{T} \mathbf{x} \leq \mathbf{y}^\text{T}A \mathbf{x} \leq \mathbf{y}^\text{T} \mathbf{b} \implies opt(\text{primal}) \leq opt(\text{dual})
+\end{equation}
+
+This leads to several results. One is that if a standard problem and its dual are both feasible, then both are bounded feasible because $\mathbf{y}^\text{T} \mathbf{b}$ is an upper bound for $x$ for the maximum problem, and vice versa. By a similar reasoning, if the primal is unbounded then its dual is infeasible, and vice versa.
+
+In the case of feasible problems, if there exists feasible $x*$ and $y*$ for the standard maximum problem and its dual such that $\mathbf{c}^\text{T} \mathbf{x*} = \mathbf{y*}^\text{T} \mathbf{b}$ then both are optimal for their respective problems because for any feasible $x$, it must satisfy \eqref{eq:bounds} $\mathbf{c}^\text{T} \mathbf{x*} \leq \mathbf{y*}^\text{T} \mathbf{b} = \mathbf{c}^\text{T} \mathbf{x*}$. Therefore $x$ attains its optimum at $x*$, and the symmetric argument applies for $y*$.
+
+The Duality Theorem tells us that such an optimal solution always exists if one of the problems is bounded feasible.
+
+\textbf{Duality Theorem} \textit{If the primal or its dual is feasible and bounded, then so is the other, and opt(primal) = opt(dual).}
+
+We shall see that the Simplex method is a constructive proof of this theorem.
+
+\section{Mathematical Formulation of Simplex Algorithm}
 
 
 \begin{thebibliography}{9}
