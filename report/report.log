@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.6.25)  9 DEC 2017 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.6.25)  10 DEC 2017 00:06
 entering extended mode
 **./report.tex
 (report.tex
@@ -640,6 +640,41 @@ File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
 ))
 \Gin@req@height=\dimen133
 \Gin@req@width=\dimen134
+)
+("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\subcapt
+ion.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+
+("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption
+.sty"
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption
+3.sty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen135
+\captionmargin@=\dimen136
+\captionwidth=\dimen137
+\caption@tempdima=\dimen138
+\caption@indent=\dimen139
+\caption@parindent=\dimen140
+\caption@hangindent=\dimen141
+)
+\c@ContinuedFloat=\count117
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count118
+\c@subtable=\count119
+)
+("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty
+"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count120
+\float@exts=\toks23
+\float@box=\box28
+\@float@everytoks=\toks24
+\@floatcapt=\box29
 ) (report.aux)
 \openout1 = `report.aux'.
 
@@ -692,7 +727,7 @@ LaTeX Font Info:    ... okay on input line 20.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box28
+\AtBeginShipoutBox=\box30
 Package hyperref Info: Link coloring OFF on input line 20.
 
 ("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\namere
@@ -703,7 +738,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 itlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count117
+\c@section@level=\count121
 )
 LaTeX Info: Redefining \ref on input line 20.
 LaTeX Info: Redefining \pageref on input line 20.
@@ -716,17 +751,17 @@ LaTeX Info: Redefining \nameref on input line 20.
 ("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf
 .mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count118
-\scratchdimen=\dimen135
-\scratchbox=\box29
-\nofMPsegments=\count119
-\nofMParguments=\count120
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count121
-\MPscratchDim=\dimen136
-\MPnumerator=\count122
-\makeMPintoPDFobject=\count123
-\everyMPtoPDFconversion=\toks24
+\scratchcounter=\count122
+\scratchdimen=\dimen142
+\scratchbox=\box31
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen143
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
+\everyMPtoPDFconversion=\toks26
 )
 ("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstop
 df-base.sty"
@@ -743,6 +778,9 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 
 ("C:\Users\dguittet\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\umsa.f
@@ -757,35 +795,35 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/dguittet/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2] [3]
-Overfull \hbox (7.51514pt too wide) in paragraph at lines 134--134
-[]\OT1/cmr/bx/n/17.28 Mathematical For-mu-la-tion of Sim-plex Al-go-rithm 
- []
-
-
-Underfull \hbox (badness 1259) in paragraph at lines 140--143
+<3dpoly.png, id=40, 1292.83pt x 1202.4925pt>
+File: 3dpoly.png Graphic file (type png)
+ <use 3dpoly.png>
+Package pdftex.def Info: 3dpoly.png used on input line 59.
+(pdftex.def)             Requested size: 180.67499pt x 168.03587pt.
+ [2 <./3dpoly.png>] [3] [4] [5]
+Underfull \hbox (badness 1259) in paragraph at lines 212--215
 []\OT1/cmr/m/n/12 Chandrasekaran, R. \OT1/cmr/m/it/12 Short-est Path. []$\OT1/c
 mtt/m/n/12 https : / / www . utdallas . edu / []chandra /
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 163.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 163.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 240.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 240.
  (report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 163.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 163.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 240.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 240.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: D7AE0CB1BCDB2772E1F36B37DFB3E43A;252.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 163.
+(rerunfilecheck)             Checksum: 3FA59EFE9150184A053E6F71F20E8D52;365.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 240.
  ) 
 Here is how much of TeX's memory you used:
- 7272 strings out of 493323
- 106524 string characters out of 3128713
- 204458 words of memory out of 3000000
- 10711 multiletter control sequences out of 15000+200000
+ 8427 strings out of 493323
+ 127369 string characters out of 3128713
+ 231966 words of memory out of 3000000
+ 11844 multiletter control sequences out of 15000+200000
  13540 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,8n,28p,1011b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,9n,40p,1011b,377s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmbx12.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb><C:/Users/dguittet/AppData/Local/Programs/MiK
@@ -794,16 +832,17 @@ cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/dgui
 ttet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
 ><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmr17.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr8.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/dguittet/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/dguittet
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
-:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmtt12.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (4 pages, 138722 bytes).
+1/public/amsfonts/cm/cmr6.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/dguittet/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/dguittet/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/
+Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmti12.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmtt12.pfb><C:/Users/dguittet/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (6 pages, 208562 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 
